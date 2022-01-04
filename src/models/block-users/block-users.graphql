@@ -1,0 +1,9 @@
+type BlockUser{
+    id:String!
+}
+type Query{
+    block_users:[BlockUser]
+}
+# type Resolver{
+    
+# }

@@ -1,0 +1,9 @@
+type ReportType{
+    id:String!
+}
+type Query{
+    report_types:[ReportType]
+}
+# type Resolver{
+    
+# }

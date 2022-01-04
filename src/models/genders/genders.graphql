@@ -1,0 +1,9 @@
+type Gender{
+    id:String!
+}
+type Query{
+    genders:[Gender]
+}
+# type Resolver{
+    
+# }

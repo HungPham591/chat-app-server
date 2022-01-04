@@ -1,0 +1,9 @@
+type Service{
+    id:String!
+}
+type Query{
+    services:[Service]
+}
+# type Resolver{
+    
+# }

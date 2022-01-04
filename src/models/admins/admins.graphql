@@ -1,0 +1,9 @@
+type Admin{
+    id:String!
+}
+type Query{
+    admins:[Admin]
+}
+# type Resolver{
+    
+# }

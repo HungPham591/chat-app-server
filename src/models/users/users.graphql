@@ -1,0 +1,9 @@
+type User{
+    id:String!
+}
+type Query{
+    users:[User]
+}
+# type Resolver{
+    
+# }

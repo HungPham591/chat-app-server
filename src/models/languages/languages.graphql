@@ -1,0 +1,9 @@
+type Language{
+    id:String!
+}
+type Query{
+    languages:[Language]
+}
+# type Resolver{
+    
+# }
