@@ -1,14 +1,19 @@
 import { ReportsRO } from './../reports/reports.dto';
 import { BlockUsersRO } from './../block-users/block_users.dto';
+import { IsString, IsInt, IsNotEmpty } from 'class-validator';
 
 export class ReportTypesDTO {
-
-}
-export class ReportTypesRO {
-    id: string;
+    @IsNotEmpty()
+    @IsString()
     name: string;
-    users: [BlockUsersRO];
-    reports: [ReportsRO];
+    @IsInt()
     code: number;
-    created: Date;
+}
+export interface ReportTypesRO {
+    id?: string;
+    name?: string;
+    users?: BlockUsersRO[];
+    reports?: ReportsRO[];
+    code?: number;
+    created?: Date;
 }

@@ -1,5 +1,9 @@
 type Report{
-    id:String!
+    id: ID
+    type: ReportType
+    user_send: User
+    user_receive: User
+    created: Date
 }
 type Query{
     reports:[Report]

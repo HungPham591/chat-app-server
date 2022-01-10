@@ -1,5 +1,10 @@
 type Language{
-    id:String!
+    id: ID
+    users: [User]
+    code: Int
+    name: String
+    created: Date
+    deleteAt: Date
 }
 type Query{
     languages:[Language]

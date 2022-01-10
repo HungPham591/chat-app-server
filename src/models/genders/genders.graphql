@@ -1,5 +1,11 @@
 type Gender{
-    id:String!
+    id: ID
+    name: String
+    code: Int
+    users_gender: [User]
+    users_interested_in_gender: [User]
+    created: Date
+    deleteAt: Date
 }
 type Query{
     genders:[Gender]

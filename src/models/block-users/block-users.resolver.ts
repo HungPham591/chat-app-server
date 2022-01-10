@@ -1,7 +1,17 @@
-import { Resolver, Query } from '@nestjs/graphql';
+import { BlockUsersService } from './block-users.service';
+import { Resolver, Query, Mutation } from '@nestjs/graphql';
 
 @Resolver()
 export class BlockUsersResolver {
-    // @Query()
-    // block_user() { }
+    constructor(
+        private blockUserService: BlockUsersService
+    ) { }
+    @Query()
+    async blockUser() {
+
+    }
+    @Query()
+    async blockUsers() {
+
+    }
 }

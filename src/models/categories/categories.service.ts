@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CategoriesEntity } from './categories.entity';
+import { CategoriesRO, CategoriesDTO } from './categories.dto';
 
 @Injectable()
 export class CategoriesService {
@@ -9,19 +10,47 @@ export class CategoriesService {
         @InjectRepository(CategoriesEntity)
         private categoriesRepository: Repository<CategoriesEntity>
     ) { }
-    async getAll() {
+    private async ensureOwnership(adminId: string) {
 
     }
-    async get() {
-
+    async get(page: number = 1): Promise<CategoriesRO[]> {
+        const numberPerPage = 10;
+        const categories = await this.categoriesRepository.find({
+            take: numberPerPage,
+            skip: numberPerPage * (page - 1)
+        })
+        return categories;
     }
-    async create() {
-
+    async getOne(id: string): Promise<CategoriesRO> {
+        const category = await this.categoriesRepository.findOne({
+            where: { id }
+        })
+        if (!category) throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+        return category;
     }
-    async update() {
-
+    async create(data: CategoriesDTO): Promise<CategoriesRO> {
+        this.ensureOwnership('adminId');
+        const category = await this.categoriesRepository.create(data);
+        await this.categoriesRepository.save(category);
+        return category;
     }
-    async delete() {
-
+    async update(id: string, data: Partial<CategoriesDTO>): Promise<CategoriesRO> {
+        this.ensureOwnership('adminId');
+        let category = await this.categoriesRepository.findOne({
+            where: { id }
+        });
+        if (!category) throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+        await this.categoriesRepository.update({ id }, data);
+        category = await this.categoriesRepository.findOne({
+            where: { id }
+        });
+        return category;
+    }
+    async delete(id: string): Promise<CategoriesRO> {
+        this.ensureOwnership('adminId');
+        const category = await this.categoriesRepository.findOne({ where: { id } });
+        if (!category) throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+        await this.categoriesRepository.remove(category);
+        return category;
     }
 }

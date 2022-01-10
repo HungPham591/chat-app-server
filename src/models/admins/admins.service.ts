@@ -12,7 +12,7 @@ export class AdminsService {
     async getAll() {
 
     }
-    async get() {
+    async get(name: string) {
 
     }
     async create() {

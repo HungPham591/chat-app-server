@@ -1,12 +1,16 @@
 import { ReportTypesRO } from './../report-types/report_types.dto';
 import { UsersRO } from './../users/users.dto';
+import { IsUUID } from 'class-validator'
 
 export class BlockUsersDTO {
-
-}
-export class BlockUsersRO {
-    id: string;
+    @IsUUID()
     user: UsersRO;
+    @IsUUID()
     type: ReportTypesRO;
-    created: Date;
+}
+export interface BlockUsersRO {
+    id?: string;
+    user?: UsersRO;
+    type?: ReportTypesRO;
+    created?: Date;
 }

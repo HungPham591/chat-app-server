@@ -4,8 +4,15 @@ import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, Joi
 
 @Entity('block_users')
 export class BlockUserEntity {
-    @PrimaryGeneratedColumn('uuid') id: string;
-    @OneToOne(type => UserEntity) user: UserEntity;
-    @ManyToOne(type => ReportTypesEntity, reportType => reportType.users) type: ReportTypesEntity;
-    @CreateDateColumn() created: Date;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
+
+    @OneToOne(type => UserEntity)
+    user: UserEntity;
+
+    @ManyToOne(type => ReportTypesEntity, reportType => reportType.users)
+    type: ReportTypesEntity;
+
+    @CreateDateColumn()
+    created: Date;
 }

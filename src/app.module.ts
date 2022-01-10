@@ -11,14 +11,28 @@ import { ServicesModule } from './models/services/services.module';
 import { UsersModule } from './models/users/users.module';
 import { GraphQLModule } from '@nestjs/graphql'
 import { UserTypesModule } from './models/user-types/user-types.module';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+
+import { HttpErrorFilter } from './modules/http-error.module';
+import { LoggingInterceptor } from './modules/logging.module'
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot(),
-    GraphQLModule.forRoot({
-      typePaths: ['./**/**/*.graphql'],
-    }),
-    BlockUsersModule, AdminsModule, CategoriesModule, GendersModule, LanguagesModule, ReportTypesModule, ReportsModule, ServicesModule, UsersModule, UserTypesModule
-  ],
+	imports: [
+		TypeOrmModule.forRoot(),
+		GraphQLModule.forRoot({
+			typePaths: ['./**/**/*.graphql'],
+		}),
+		BlockUsersModule, AdminsModule, CategoriesModule, GendersModule, LanguagesModule, ReportTypesModule, ReportsModule, ServicesModule, UsersModule, UserTypesModule
+	],
+	providers: [
+		{
+			provide: APP_FILTER,
+			useClass: HttpErrorFilter,
+		},
+		{
+			provide: APP_INTERCEPTOR,
+			useClass: LoggingInterceptor,
+		},
+	],
 })
 export class AppModule { }

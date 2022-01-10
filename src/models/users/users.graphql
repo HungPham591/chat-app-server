@@ -1,5 +1,20 @@
 type User{
-    id:String!
+    id: ID
+    interested_in_gender: Gender
+    gender: Gender
+    categories: [Category]
+    languages: Language
+    service: Service
+    block: BlockUser
+    reports_send: [Report]
+    reports_receive: [Report]
+    social_code: String
+    birthday: Int
+    status: String
+    image_link: String
+    active: Boolean
+    created: Date
+    deleteAt: Date
 }
 type Query{
     users:[User]

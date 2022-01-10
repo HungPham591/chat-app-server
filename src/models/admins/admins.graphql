@@ -1,9 +1,15 @@
 type Admin{
-    id:String!
+    id: ID
+    name: String
+    password: String
+    role: Boolean
+    created: Date
 }
 type Query{
+    admin:Admin
     admins:[Admin]
 }
-# type Resolver{
-    
-# }
+type Mutation{
+    login:Admin
+    register:Admin
+}

@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { UsersRO, UsersDTO } from './users.dto';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from './users.entity';
@@ -9,19 +10,38 @@ export class UsersService {
         @InjectRepository(UserEntity)
         private userRepository: Repository<UserEntity>
     ) { }
-    async getAll() {
+    private async ensureOwnership(adminId: string) {
 
     }
-    async get() {
-
+    async get(page: number = 1): Promise<UsersRO[]> {
+        const numberPerPage = 10;
+        const users = await this.userRepository.find({
+            take: numberPerPage,
+            skip: numberPerPage * (page - 1)
+        });
+        return users;
     }
-    async create() {
-
+    async getOne(id: string): Promise<UsersRO> {
+        const user = await this.userRepository.findOne({ where: { id } });
+        if (!user) throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+        return user;
     }
-    async update() {
-
+    async create(data: UsersDTO): Promise<UsersRO> {
+        const user = await this.userRepository.create(data);
+        await this.userRepository.save(user);
+        return user;
     }
-    async delete() {
-
+    async update(id: string, data: Partial<UsersDTO>): Promise<UsersRO> {
+        let user = await this.userRepository.findOne({ where: { id } });
+        if (!user) throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+        await this.userRepository.update(id, data);
+        user = await this.userRepository.findOne({ where: { id } });
+        return user;
+    }
+    async delete(id: string): Promise<UsersRO> {
+        const user = await this.userRepository.findOne({ where: { id } });
+        if (!user) throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+        await this.userRepository.remove(user);
+        return user;
     }
 }

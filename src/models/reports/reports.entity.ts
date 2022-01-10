@@ -4,9 +4,18 @@ import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne } f
 
 @Entity('reports')
 export class ReportsEntity {
-    @PrimaryGeneratedColumn('uuid') id: string;
-    @ManyToOne(type => ReportTypesEntity, reportType => reportType.reports) type: ReportTypesEntity;
-    @ManyToOne(type => UserEntity, user => user.reports_send) user_send: UserEntity;
-    @ManyToOne(type => UserEntity, user => user.reports_receive) user_receive: UserEntity;
-    @CreateDateColumn() created: Date;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
+
+    @ManyToOne(type => ReportTypesEntity, reportType => reportType.reports)
+    type: ReportTypesEntity;
+
+    @ManyToOne(type => UserEntity, user => user.reports_send)
+    user_send: UserEntity;
+
+    @ManyToOne(type => UserEntity, user => user.reports_receive)
+    user_receive: UserEntity;
+
+    @CreateDateColumn()
+    created: Date;
 }

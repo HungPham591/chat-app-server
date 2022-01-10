@@ -1,5 +1,12 @@
 type Service{
-    id:String!
+    id: ID
+    users: [User]
+    code: Int
+    title: String
+    description: String
+    price: Int
+    created: Date
+    deleteAt: Date
 }
 type Query{
     services:[Service]

@@ -1,5 +1,10 @@
 type ReportType{
-    id:String!
+    id: ID
+    name: String
+    users: [BlockUser]
+    reports: [Report]
+    code: Int
+    created: Date
 }
 type Query{
     report_types:[ReportType]

@@ -1,9 +1,14 @@
 type BlockUser{
-    id:String!
+    id: ID
+    user: User
+    type: ReportType
+    created: Date
 }
 type Query{
-    block_users:[BlockUser]
+    blockUser:BlockUser
+    blockUsers:[BlockUser]
 }
-# type Resolver{
-    
-# }
+type Mutation{
+    createBlockUser:BlockUser
+    deleteBlockUser:BlockUser
+}

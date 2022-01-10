@@ -1,5 +1,11 @@
 type Category{
-    id:String!
+    id: ID
+    code: Int
+    name: String
+    description: String
+    users: [User]
+    created: Date
+    deleteAt: Date
 }
 type Query{
     categories:[Category]
