@@ -5,8 +5,6 @@ export class LanguagesDTO {
     @IsNotEmpty()
     @IsString()
     name: string;
-    @IsInt()
-    code: number;
 }
 export interface LanguagesRO {
     id?: string;

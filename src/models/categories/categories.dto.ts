@@ -2,8 +2,6 @@ import { UsersRO } from './../users/users.dto';
 import { IsInt, IsString, IsNotEmpty } from 'class-validator';
 
 export class CategoriesDTO {
-    @IsInt()
-    code: number;
     @IsString()
     @IsNotEmpty()
     name: string;

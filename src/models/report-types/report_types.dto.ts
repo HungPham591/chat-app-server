@@ -6,8 +6,6 @@ export class ReportTypesDTO {
     @IsNotEmpty()
     @IsString()
     name: string;
-    @IsInt()
-    code: number;
 }
 export interface ReportTypesRO {
     id?: string;

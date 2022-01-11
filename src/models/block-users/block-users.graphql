@@ -5,10 +5,10 @@ type BlockUser{
     created: Date
 }
 type Query{
-    blockUser:BlockUser
-    blockUsers:[BlockUser]
+    blockUser(id:ID!):BlockUser
+    blockUsers(page:Int,user:String,reportType:String):[BlockUser]
 }
 type Mutation{
-    createBlockUser:BlockUser
-    deleteBlockUser:BlockUser
+    createBlockUser(user:String!,type:String!):BlockUser
+    deleteBlockUser(id:ID!):BlockUser
 }

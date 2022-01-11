@@ -16,7 +16,7 @@ export class CategoriesEntity {
     @Column({ type: 'varchar', length: 200 })
     description: string;
 
-    @ManyToMany(type => UserEntity, users => users.categories, { onDelete: 'CASCADE' })
+    @ManyToMany(type => UserEntity, users => users.categories, { onDelete: 'CASCADE', cascade: true })
     @JoinTable()
     users: UserEntity[];
 

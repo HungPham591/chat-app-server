@@ -5,8 +5,6 @@ export class GendersDTO {
     @IsNotEmpty()
     @IsString()
     name: string;
-    @IsInt()
-    code: number;
 }
 export interface GendersRO {
     id?: string;

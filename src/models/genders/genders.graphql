@@ -8,8 +8,10 @@ type Gender{
     deleteAt: Date
 }
 type Query{
+    gender(id:ID!):Gender
     genders:[Gender]
 }
-# type Resolver{
-    
-# }
+type Mutation{
+    createGender(name:String!):Gender
+    updateGender(id:ID!,name:String!):Gender
+}

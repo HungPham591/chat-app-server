@@ -31,15 +31,19 @@ export class UserEntity {
     @ManyToOne(type => ServicesEntity, services => services.users)
     service: ServicesEntity;
 
-    @OneToOne(type => BlockUserEntity, { onDelete: 'CASCADE' })
+    @OneToOne(type => BlockUserEntity, { onDelete: 'CASCADE', cascade: true })
     @JoinColumn()
     block: BlockUserEntity;
 
-    @OneToMany(type => ReportsEntity, reports => reports.user_send, { onDelete: 'CASCADE' })
+    @OneToMany(type => ReportsEntity, reports => reports.user_send, { onDelete: 'CASCADE', cascade: true })
     reports_send: ReportsEntity[];
 
-    @OneToMany(type => ReportsEntity, reports => reports.user_receive, { onDelete: 'CASCADE' })
+    @OneToMany(type => ReportsEntity, reports => reports.user_receive, { onDelete: 'CASCADE', cascade: true })
     reports_receive: ReportsEntity[];
+
+    @ManyToMany(type => UserEntity)
+    @JoinTable()
+    friends: UserEntity[]
 
     @Column({ type: 'varchar', unique: true })
     social_code: string;
@@ -52,9 +56,6 @@ export class UserEntity {
 
     @Column('varchar')
     image_link: string;
-
-    @Column({ type: 'boolean', default: true })
-    active: boolean = true;
 
     @CreateDateColumn()
     created: Date;

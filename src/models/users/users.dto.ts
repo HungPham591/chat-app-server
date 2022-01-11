@@ -33,11 +33,11 @@ export interface UsersRO {
     block?: BlockUsersRO;
     reports_send?: ReportsRO[];
     reports_receive?: ReportsRO[];
+    friends?: UsersRO[];
     social_code?: string;
     birthday?: number;
     status?: string;
     image_link?: string;
-    active?: boolean;
     created?: Date;
     deleteAt?: Date;
 }

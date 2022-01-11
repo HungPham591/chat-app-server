@@ -9,8 +9,10 @@ type Service{
     deleteAt: Date
 }
 type Query{
+    service(id:ID!):Service
     services:[Service]
 }
-# type Resolver{
-    
-# }
+type Mutation{
+    createService(title:String!,description:String!,price:Float!):Service
+    updateService(id:ID!,title:String,description:String,price:Float):Service
+}

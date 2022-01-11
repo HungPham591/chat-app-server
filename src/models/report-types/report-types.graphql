@@ -7,8 +7,10 @@ type ReportType{
     created: Date
 }
 type Query{
-    report_types:[ReportType]
+    reportType(id:ID!):ReportType
+    reportTypes:[ReportType]
 }
-# type Resolver{
-    
-# }
+type Mutation{
+    createReportType(name:String!):ReportType
+    updateReportType(id:ID!,name:String!):ReportType
+}

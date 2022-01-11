@@ -41,7 +41,7 @@ export class UsersService {
     async delete(id: string): Promise<UsersRO> {
         const user = await this.userRepository.findOne({ where: { id } });
         if (!user) throw new HttpException('Not found', HttpStatus.NOT_FOUND);
-        await this.userRepository.remove(user);
+        await this.userRepository.softDelete(user);
         return user;
     }
 }

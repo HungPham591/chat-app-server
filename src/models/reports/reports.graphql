@@ -6,8 +6,10 @@ type Report{
     created: Date
 }
 type Query{
-    reports:[Report]
+    report(id:ID!):Report
+    reports(page:Int,user:String!,reportType:String!):[Report]
 }
-# type Resolver{
-    
-# }
+type Mutation{
+    createReport(type:String!,userSend:String!,userReceive:String!):Report
+    deleteReport(id:ID!):Report
+}
