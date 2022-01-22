@@ -58,8 +58,8 @@ export class UserEntity {
     image_link: string;
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 
     @DeleteDateColumn()
-    deleteAt?: Date;
+    deletedAt?: Date;
 }

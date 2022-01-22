@@ -4,7 +4,7 @@ type ReportType{
     users: [BlockUser]
     reports: [Report]
     code: Int
-    created: Date
+    createdAt: Date
 }
 type Query{
     reportType(id:ID!):ReportType
@@ -13,4 +13,6 @@ type Query{
 type Mutation{
     createReportType(name:String!):ReportType
     updateReportType(id:ID!,name:String!):ReportType
+    deleteReportType(id:ID!):ReportType
+    restoreReportType(id:ID!):ReportType
 }

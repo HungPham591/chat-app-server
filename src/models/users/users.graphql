@@ -13,24 +13,20 @@ type User{
     birthday: Int
     status: String
     image_link: String
-    created: Date
-    deleteAt: Date
+    createdAt: Date
+    deletedAt: Date
 }
 type Query{
     user(id:ID!):User
-    users(page:Int,gender:String,category:String,language:String,service:String):[User] 
+    users(page:Int,gender:String,interested_in_gender:String,category:String,language:String,service:String):[User]
+    userInfo:User 
 }
 type Mutation{
-    userUpdateInterestedInGender(id:ID!,gender:String!):User
-    userUpdateGender(id:ID!,gender:String!):User
-    userUpdateCategory(id:ID!,category:String!):User
-    userAddFriend(id:ID!,user:String!):User
-    userUpdateBirthday(id:ID!,birthday:Int!):User
-    userUpdateStatus(id:ID!,status:String!):User
-    userUpdateImage(id:ID!,image_link:String!):User
-    userUpdateService(id:ID!,service:String!):User
+    register(interested_in_gender:String!,gender:String!,categories:[String]!,languages:String!,social_code:String!,birthday:Int!,status:String!,image_link:String!):User
+    addFriend(id:ID!,user:String!)
+    updateUser(id:ID!,gender:String,interested_in_gender:String,categories:[String],languages:String,birthday:Int,status:Int,image_link:String)
     deleteUser(id:ID!):User
+    restoreUser(id:ID!):User
     login(social_code:String!):User
     logout:User
-    register(interested_in_gender:String!,gender:String!,categories:[String]!,languages:String!,social_code:String!,birthday:Int!,status:String!,image_link:String!):User
 }

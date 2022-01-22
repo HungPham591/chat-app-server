@@ -14,5 +14,5 @@ export class BlockUserEntity {
     type: ReportTypesEntity;
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 }

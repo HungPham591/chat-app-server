@@ -6,6 +6,7 @@ import { AdminsResolver } from './admins.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([AdminEntity])],
-  providers: [AdminsService, AdminsResolver]
+  providers: [AdminsService, AdminsResolver],
+  exports: [AdminsService]
 })
 export class AdminsModule { }

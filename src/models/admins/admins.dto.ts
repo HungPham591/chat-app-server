@@ -7,13 +7,10 @@ export class AdminsDTO {
     @IsNotEmpty()
     @IsString()
     password: string;
-    @IsBoolean()
-    role: boolean;
 }
 export interface AdminsRO {
     id?: string;
     name?: string;
-    password?: string;
-    role?: boolean;
-    created?: Date;
+    createdAt?: Date;
+    deletedAt?: Date;
 }

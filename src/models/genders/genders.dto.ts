@@ -12,6 +12,6 @@ export interface GendersRO {
     code?: number;
     users_gender?: UsersRO[];
     users_interested_in_gender?: UsersRO[];
-    created?: Date;
-    deleteAt?: Date;
+    createdAt?: Date;
+    deletedAt?: Date;
 }

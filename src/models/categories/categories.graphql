@@ -4,8 +4,8 @@ type Category{
     name: String
     description: String
     users: [User]
-    created: Date
-    deleteAt: Date
+    createdAt: Date
+    deletedAt: Date
 }
 type Query{
     category(id:ID!):Category
@@ -15,4 +15,5 @@ type Mutation{
     createCategory(name:String,description:String):Category
     updateCategory(id:ID!,name:String,description:String):Category
     deleteCategory(id:ID!):Category
+    restoreCategory(id:ID!):Category
 }

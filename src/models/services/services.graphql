@@ -4,9 +4,9 @@ type Service{
     code: Int
     title: String
     description: String
-    price: Int
-    created: Date
-    deleteAt: Date
+    price: Float
+    createdAt: Date
+    deletedAt: Date
 }
 type Query{
     service(id:ID!):Service
@@ -15,4 +15,6 @@ type Query{
 type Mutation{
     createService(title:String!,description:String!,price:Float!):Service
     updateService(id:ID!,title:String,description:String,price:Float):Service
+    deleteService(id:ID!):Service
+    restoreService(id:ID!):Service
 }

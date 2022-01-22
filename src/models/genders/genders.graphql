@@ -4,8 +4,8 @@ type Gender{
     code: Int
     users_gender: [User]
     users_interested_in_gender: [User]
-    created: Date
-    deleteAt: Date
+    createdAt: Date
+    deletedAt: Date
 }
 type Query{
     gender(id:ID!):Gender
@@ -14,4 +14,6 @@ type Query{
 type Mutation{
     createGender(name:String!):Gender
     updateGender(id:ID!,name:String!):Gender
+    deleteGender(id:ID!):Gender
+    restoreGender(id:ID!):Gender
 }

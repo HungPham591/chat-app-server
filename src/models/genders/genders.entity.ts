@@ -21,8 +21,8 @@ export class GendersEntity {
     users_interested_in_gender: UserEntity[];
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 
     @DeleteDateColumn()
-    deleteAt?: Date;
+    deletedAt?: Date;
 }

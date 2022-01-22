@@ -18,6 +18,6 @@ export interface ServicesRO {
     title?: string;
     description?: string;
     price?: number;
-    created?: Date;
-    deleteAt?: Date;
+    createdAt?: Date;
+    deletedAt?: Date;
 }

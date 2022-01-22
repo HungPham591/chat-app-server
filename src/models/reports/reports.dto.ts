@@ -15,5 +15,5 @@ export interface ReportsRO {
     type?: ReportTypesRO;
     user_send?: UsersRO;
     user_receive?: UsersRO;
-    created?: Date;
+    createdAt?: Date;
 }

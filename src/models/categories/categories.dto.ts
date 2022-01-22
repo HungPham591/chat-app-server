@@ -15,6 +15,6 @@ export interface CategoriesRO {
     name?: string;
     description?: string;
     users?: UsersRO[];
-    created?: Date;
-    deleteAt?: Date;
+    createdAt?: Date;
+    deletedAt?: Date;
 }

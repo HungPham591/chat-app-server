@@ -17,8 +17,8 @@ export class LanguagesEntity {
     name: string;
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 
     @DeleteDateColumn()
-    deleteAt?: Date;
+    deletedAt?: Date;
 }

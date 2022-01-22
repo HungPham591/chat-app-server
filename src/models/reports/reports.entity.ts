@@ -17,5 +17,5 @@ export class ReportsEntity {
     user_receive: UserEntity;
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 }

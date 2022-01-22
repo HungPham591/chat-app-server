@@ -1,3 +1,4 @@
+import { AdminsService } from './../admins/admins.service';
 import { ServicesRO, ServicesDTO } from './services.dto';
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,10 +9,11 @@ import { ServicesEntity } from './services.entity';
 export class ServicesService {
     constructor(
         @InjectRepository(ServicesEntity)
-        private servicesRepository: Repository<ServicesEntity>
+        private readonly servicesRepository: Repository<ServicesEntity>,
+        private readonly adminsService: AdminsService
     ) { }
-    private async ensureOwnership(adminId: string) {
-
+    private async isAdmin(adminId: string) {
+        this.adminsService.getOne(adminId);
     }
     async get(): Promise<ServicesRO[]> {
         const services = await this.servicesRepository.find();
@@ -23,13 +25,13 @@ export class ServicesService {
         return service;
     }
     async create(data: ServicesDTO): Promise<ServicesRO> {
-        this.ensureOwnership('adminId');
+        this.isAdmin('adminId');
         const service = await this.servicesRepository.create(data);
         await this.servicesRepository.save(service);
         return service;
     }
     async update(id: string, data: Partial<ServicesDTO>): Promise<ServicesRO> {
-        this.ensureOwnership('adminId');
+        this.isAdmin('adminId');
         let service = await this.servicesRepository.findOne({ where: { id } });
         if (!service) throw new HttpException('Not found', HttpStatus.NOT_FOUND);
         await this.servicesRepository.update(id, service);
@@ -37,10 +39,18 @@ export class ServicesService {
         return service;
     }
     async delete(id: string): Promise<ServicesRO> {
-        this.ensureOwnership('adminId');
+        this.isAdmin('adminId');
         const service = await this.servicesRepository.findOne({ where: { id } });
         if (!service) throw new HttpException('Not found', HttpStatus.NOT_FOUND);
-        await this.servicesRepository.remove(service);
+        await this.servicesRepository.softRemove(service);
+        return service;
+    }
+    async restore(id: string): Promise<ServicesRO> {
+        this.isAdmin('adminId');
+        let service = await this.servicesRepository.findOne({ where: { id }, withDeleted: true });
+        if (!service) throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+        await this.servicesRepository.restore(service);
+        service = await this.servicesRepository.findOne({ where: { id } });
         return service;
     }
 }

@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, DeleteDateColumn } from "typeorm";
 
 @Entity('admins')
 export class AdminEntity {
@@ -11,9 +11,9 @@ export class AdminEntity {
     @Column({ type: 'varchar', length: 100 })
     password: string;
 
-    @Column('boolean')
-    role: boolean;
-
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
+
+    @DeleteDateColumn()
+    deletedAt?: Date;
 }

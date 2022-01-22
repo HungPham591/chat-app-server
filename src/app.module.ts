@@ -12,17 +12,27 @@ import { UsersModule } from './models/users/users.module';
 import { GraphQLModule } from '@nestjs/graphql'
 import { UserTypesModule } from './models/user-types/user-types.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-
+import { MongooseModule } from '@nestjs/mongoose';
 import { HttpErrorFilter } from './modules/http-error.module';
-import { LoggingInterceptor } from './modules/logging.module'
+import { LoggingInterceptor } from './modules/logging.module';
+import { ConfigModule } from '@nestjs/config';
+import { PostsModule } from './models/posts/posts.module';
+import { SuperAdminsModule } from './models/super-admins/super-admins.module';
+import { FacebookAccountsModule } from './models/facebook-accounts/facebook-accounts.module';
+import { GoogleAccountsModule } from './models/google-accounts/google-accounts.module';
+import { FeedbackModule } from './models/feedback/feedback.module';
+import { FeedbackTypesModule } from './models/feedback-types/feedback-types.module';
+import { ProfilePicturesModule } from './models/profile-pictures/profile-pictures.module';
 
 @Module({
 	imports: [
+		ConfigModule.forRoot({ isGlobal: true }),
 		TypeOrmModule.forRoot(),
+		MongooseModule.forRoot(process.env.MONGODB_URI),
 		GraphQLModule.forRoot({
 			typePaths: ['./**/**/*.graphql'],
 		}),
-		BlockUsersModule, AdminsModule, CategoriesModule, GendersModule, LanguagesModule, ReportTypesModule, ReportsModule, ServicesModule, UsersModule, UserTypesModule
+		BlockUsersModule, AdminsModule, CategoriesModule, GendersModule, LanguagesModule, ReportTypesModule, ReportsModule, ServicesModule, UsersModule, UserTypesModule, PostsModule, SuperAdminsModule, FacebookAccountsModule, GoogleAccountsModule, FeedbackModule, FeedbackTypesModule, ProfilePicturesModule
 	],
 	providers: [
 		{

@@ -13,5 +13,6 @@ export interface ReportTypesRO {
     users?: BlockUsersRO[];
     reports?: ReportsRO[];
     code?: number;
-    created?: Date;
+    createdAt?: Date;
+    deletedAt?: Date;
 }

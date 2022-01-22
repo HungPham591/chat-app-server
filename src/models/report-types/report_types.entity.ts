@@ -21,5 +21,5 @@ export class ReportTypesEntity {
     code: number;
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 }

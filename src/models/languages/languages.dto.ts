@@ -11,6 +11,6 @@ export interface LanguagesRO {
     users?: UsersRO[];
     code?: number;
     name?: string;
-    created?: Date;
-    deleteAt?: Date;
+    createdAt?: Date;
+    deletedAt?: Date;
 }

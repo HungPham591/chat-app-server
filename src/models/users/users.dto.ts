@@ -22,6 +22,9 @@ export class UsersDTO {
     birthday: number;
     @IsString()
     status: string;
+    @IsString()
+    @IsNotEmpty()
+    image_link: string
 }
 export interface UsersRO {
     id?: string;
@@ -34,10 +37,9 @@ export interface UsersRO {
     reports_send?: ReportsRO[];
     reports_receive?: ReportsRO[];
     friends?: UsersRO[];
-    social_code?: string;
     birthday?: number;
     status?: string;
     image_link?: string;
-    created?: Date;
-    deleteAt?: Date;
+    createdAt?: Date;
+    deletedAt?: Date;
 }

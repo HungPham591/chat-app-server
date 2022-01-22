@@ -6,6 +6,7 @@ import { ReportsResolver } from './reports.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ReportsEntity])],
-  providers: [ReportsService, ReportsResolver]
+  providers: [ReportsService, ReportsResolver],
+  exports: [ReportsService]
 })
 export class ReportsModule { }

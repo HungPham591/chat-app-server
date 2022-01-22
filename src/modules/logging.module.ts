@@ -4,7 +4,7 @@ import { tap } from 'rxjs/operators';
 import { GqlExecutionContext } from '@nestjs/graphql';
 
 @Injectable()
-export class LoggingInterceptor implements NestInterceptor {
+export class LoggingInterceptor implements NestInterceptor {// dung de log cac request nhan duoc
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
 
         const now = Date.now();

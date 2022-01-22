@@ -3,13 +3,17 @@ type Admin{
     name: String
     password: String
     role: Boolean
-    created: Date
+    createdAt: Date
 }
 type Query{
-    admin:Admin
+    admin(id:ID!):Admin
     admins:[Admin]
+    adminInfo:Admin
 }
 type Mutation{
-    login:Admin
-    register:Admin
+    login(name:String!,password:String!):Admin
+    createAdmin(name:String!,password:String!):Admin
+    updateAdmin(id:ID!,password:String!):Admin
+    deleteAdmin(id:ID!):Admin
+    restoreAdmin(id:ID!):Admin
 }

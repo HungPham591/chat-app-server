@@ -21,8 +21,8 @@ export class CategoriesEntity {
     users: UserEntity[];
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 
     @DeleteDateColumn()
-    deleteAt?: Date;
+    deletedAt?: Date;
 }

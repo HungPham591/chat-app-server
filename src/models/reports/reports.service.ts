@@ -9,14 +9,22 @@ import { ReportsEntity } from './reports.entity';
 export class ReportsService {
     constructor(
         @InjectRepository(ReportsEntity)
-        private reportsRepository: Repository<ReportsEntity>
+        private readonly reportsRepository: Repository<ReportsEntity>
     ) { }
     private async ensureOwnership(adminId: string) {
 
     }
-    async get(page: number = 1): Promise<ReportTypesRO[]> {
+    private toCondition(user_id?: string, report_type_id?: string) {
+        return {
+            ...user_id && { user: { id: user_id } },
+            ...report_type_id && { report_type: { id: report_type_id } }
+        };
+    }
+    async get(page: number = 1, user?: string, report_type?: string): Promise<ReportTypesRO[]> {
         const numberPerPage = 10;
+        const condition = this.toCondition(user, report_type);
         const reports = await this.reportsRepository.find({
+            where: condition,
             take: numberPerPage,
             skip: numberPerPage * (page - 1)
         });

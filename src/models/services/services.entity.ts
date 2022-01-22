@@ -23,8 +23,8 @@ export class ServicesEntity {
     price: number;
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 
     @DeleteDateColumn()
-    deleteAt?: Date;
+    deletedAt?: Date;
 }

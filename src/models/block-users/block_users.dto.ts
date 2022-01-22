@@ -6,11 +6,11 @@ export class BlockUsersDTO {
     @IsUUID()
     user: UsersRO;
     @IsUUID()
-    type: ReportTypesRO;
+    report_type: ReportTypesRO;
 }
 export interface BlockUsersRO {
     id?: string;
     user?: UsersRO;
     type?: ReportTypesRO;
-    created?: Date;
+    createdAt?: Date;
 }
