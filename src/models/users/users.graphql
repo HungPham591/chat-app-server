@@ -2,31 +2,25 @@ type User{
     id: ID
     interested_in_gender: Gender
     gender: Gender
-    categories: [Category]
     languages: Language
-    service: Service
-    block: BlockUser
+    service: Service 
     reports_send: [Report]
     reports_receive: [Report]
     friends: [User]
-    social_code: String
     birthday: Int
-    status: String
+    bio: String
     image_link: String
     createdAt: Date
     deletedAt: Date
 }
 type Query{
     user(id:ID!):User
-    users(page:Int,gender:String,interested_in_gender:String,category:String,language:String,service:String):[User]
+    users(page:Int,gender:String,interested_in_gender:String,language:String,service:String):[User]
     userInfo:User 
 }
-type Mutation{
-    register(interested_in_gender:String!,gender:String!,categories:[String]!,languages:String!,social_code:String!,birthday:Int!,status:String!,image_link:String!):User
-    addFriend(id:ID!,user:String!)
-    updateUser(id:ID!,gender:String,interested_in_gender:String,categories:[String],languages:String,birthday:Int,status:Int,image_link:String)
-    deleteUser(id:ID!):User
-    restoreUser(id:ID!):User
-    login(social_code:String!):User
-    logout:User
+type Mutation{ 
+    removeFriend(user:String!):User
+    updateUser(gender:String,interested_in_gender:String,languages:String,birthday:Int,bio:String,image_link:String)
+    deleteUser:User
+    restoreUser:User
 }

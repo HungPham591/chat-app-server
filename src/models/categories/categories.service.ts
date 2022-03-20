@@ -15,7 +15,7 @@ export class CategoriesService {
     private async isAdmin(adminId: string) {
         this.adminsService.getOne(adminId);
     }
-    async get(page: number = 1): Promise<CategoriesRO[]> {
+    async get(page: number = 1, sizePerPage: number = 10): Promise<CategoriesRO[]> {
         const numberPerPage = 10;
         const categories = await this.categoriesRepository.find({
             take: numberPerPage,

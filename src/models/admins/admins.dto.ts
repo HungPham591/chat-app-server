@@ -8,7 +8,7 @@ export class AdminsDTO {
     @IsString()
     password: string;
 }
-export interface AdminsRO {
+export class AdminsRO {
     id?: string;
     name?: string;
     createdAt?: Date;

@@ -20,7 +20,7 @@ export class ReportsService {
             ...report_type_id && { report_type: { id: report_type_id } }
         };
     }
-    async get(page: number = 1, user?: string, report_type?: string): Promise<ReportTypesRO[]> {
+    async get(page: number = 1, sizePerPage: number = 10, user?: string, report_type?: string): Promise<ReportTypesRO[]> {
         const numberPerPage = 10;
         const condition = this.toCondition(user, report_type);
         const reports = await this.reportsRepository.find({

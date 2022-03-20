@@ -15,7 +15,7 @@ export class GendersService {
     private async isAdmin(adminId: string) {
         this.adminsService.getOne(adminId);
     }
-    async get(): Promise<GendersRO[]> {
+    async get(page: number = 1, sizePerPage: number = 10): Promise<GendersRO[]> {
         const gender = await this.genderRepository.find();
         return gender;
     }

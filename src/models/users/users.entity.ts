@@ -1,10 +1,9 @@
-import { ReportsEntity } from './../reports/reports.entity';
-import { BlockUserEntity } from './../block-users/block_users.entity';
-import { ServicesEntity } from './../services/services.entity';
-import { LanguagesEntity } from './../languages/languages.entity';
+import { Check, Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { CategoriesEntity } from './../categories/categories.entity';
 import { GendersEntity } from './../genders/genders.entity';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, ManyToMany, JoinTable, OneToOne, JoinColumn, OneToMany, DeleteDateColumn, Check } from "typeorm";
+import { LanguagesEntity } from './../languages/languages.entity';
+import { ReportsEntity } from './../reports/reports.entity';
+import { ServicesEntity } from './../services/services.entity';
 
 
 
@@ -21,19 +20,14 @@ export class UserEntity {
     @ManyToOne(type => GendersEntity, genders => genders.users_gender)
     gender: GendersEntity;
 
-    @ManyToMany(type => CategoriesEntity, categories => categories.users)
-    @JoinTable()
-    categories: CategoriesEntity[];
-
     @ManyToOne(type => LanguagesEntity, languages => languages.users)
     languages: LanguagesEntity;
 
+    @ManyToOne(type => CategoriesEntity, categories => categories.users)
+    category: CategoriesEntity;
+
     @ManyToOne(type => ServicesEntity, services => services.users)
     service: ServicesEntity;
-
-    @OneToOne(type => BlockUserEntity, { onDelete: 'CASCADE', cascade: true })
-    @JoinColumn()
-    block: BlockUserEntity;
 
     @OneToMany(type => ReportsEntity, reports => reports.user_send, { onDelete: 'CASCADE', cascade: true })
     reports_send: ReportsEntity[];
@@ -45,14 +39,11 @@ export class UserEntity {
     @JoinTable()
     friends: UserEntity[]
 
-    @Column({ type: 'varchar', unique: true })
-    social_code: string;
-
     @Column({ type: 'int', width: 4 })
     birthday: number;
 
     @Column({ type: 'varchar', length: 200 })
-    status: string;
+    bio: string;
 
     @Column('varchar')
     image_link: string;

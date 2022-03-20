@@ -1,8 +1,8 @@
-import { AdminsDTO } from './admins.dto';
-import { AdminsRO } from './../../../dist/models/admins/admins.dto.d';
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { AdminsRO } from './../../../dist/models/admins/admins.dto.d';
+import { AdminsDTO } from './admins.dto';
 import { AdminEntity } from './admins.entity';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class AdminsService {
     private async isAdmin(adminId: string) {
 
     }
-    async get(): Promise<AdminsRO[]> {
+    async get(page: number = 1, sizePerPage: number = 10): Promise<AdminsRO[]> {
         const admins = await this.adminRepository.find();
         return admins;
     }

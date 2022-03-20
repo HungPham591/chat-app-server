@@ -1,4 +1,11 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class FacebookAccountsService {}
+export class FacebookAccountsService {
+    async validateAccount() {
+
+    }
+    async verify() {
+
+    }
+}

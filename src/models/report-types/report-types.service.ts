@@ -15,7 +15,7 @@ export class ReportTypesService {
     private async isAdmin(adminId: string) {
         this.adminsService.getOne(adminId);
     }
-    async get(): Promise<ReportTypesRO[]> {
+    async get(page: number = 1, sizePerPage: number = 10): Promise<ReportTypesRO[]> {
         const reportTypes = await this.reportTypesRepository.find();
         return reportTypes;
     }

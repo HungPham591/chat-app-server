@@ -1,6 +1,6 @@
 import { UsersDTO } from './users.dto';
 import { UsersService } from './users.service';
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Context } from '@nestjs/graphql';
 
 @Resolver()
 export class UsersResolver {
@@ -18,45 +18,48 @@ export class UsersResolver {
         @Args('page') page: number,
         @Args('gender') gender: string,
         @Args('interested_in_gender') interested_in_gender: string,
-        @Args('category') category: string,
         @Args('language') language: string,
         @Args('service') service: string
     ) {
 
     }
     @Query()
-    async userInfo() {
-
-    }
-    @Mutation()
-    async register(
-        @Args() { interested_in_gender, gender, categories, languages, social_code, birthday, status, image_link }: UsersDTO
+    async userInfo(
+        @Context() id: string
     ) {
 
     }
     @Mutation()
-    async login(
-        @Args('social_code') social_code: string
+    async addFriend(
+        @Context() id: string,
+        @Args('user') user: string
     ) {
 
     }
     @Mutation()
-    async logout() {
+    async removeFriend(
+        @Context() id: string,
+        @Args('user') user: string
+    ) {
 
     }
     @Mutation()
     async updateUser(
-        @Args('id') id: string,
-        @Args() { gender, interested_in_gender, categories, languages, birthday, status, image_link }: UsersDTO
+        @Context() id: string,
+        @Args() { gender, interested_in_gender, languages, birthday, bio, image_link }: UsersDTO
     ) {
 
     }
     @Mutation()
-    async deleteUser() {
+    async deleteUser(
+        @Context() id: string
+    ) {
 
     }
     @Mutation()
-    async restoreUser() {
+    async restoreUser(
+        @Context() id: string
+    ) {
 
     }
 }

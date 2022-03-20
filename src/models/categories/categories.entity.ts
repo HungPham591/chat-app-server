@@ -1,5 +1,5 @@
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, Generated, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity } from './../users/users.entity';
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, OneToMany, ManyToMany, JoinTable, Generated, DeleteDateColumn } from "typeorm";
 
 @Entity('categories')
 export class CategoriesEntity {
@@ -16,7 +16,7 @@ export class CategoriesEntity {
     @Column({ type: 'varchar', length: 200 })
     description: string;
 
-    @ManyToMany(type => UserEntity, users => users.categories, { onDelete: 'CASCADE', cascade: true })
+    @ManyToMany(type => UserEntity, users => users.category, { onDelete: 'CASCADE', cascade: true })
     @JoinTable()
     users: UserEntity[];
 

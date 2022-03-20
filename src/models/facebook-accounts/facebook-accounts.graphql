@@ -1,0 +1,12 @@
+type FacebookAccount{
+    id:ID
+    facebook_id:String
+    user:User
+    createdAt:Date
+    deletedAt:Date
+}
+type Mutation{
+    register(facebook_id:String!,gender:String,interested_in_gender:String,languages:String,birthday:Int,bio:String,image_link:String):User
+    login(facebook_id:String!):User
+    logout:User
+}

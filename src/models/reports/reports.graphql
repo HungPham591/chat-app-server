@@ -7,7 +7,7 @@ type Report{
 }
 type Query{
     report(id:ID!):Report
-    reports(page:Int,user:String!,report_type:String!):[Report]
+    reports(page:Int,user:String,report_type:String):[Report]
 }
 type Mutation{
     createReport(type:String!,user_send:String!,user_receive:String!):Report

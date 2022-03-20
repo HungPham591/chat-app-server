@@ -1,5 +1,5 @@
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { UsersRO } from './../users/users.dto';
-import { IsNotEmpty, IsInt, IsString, IsNumber } from 'class-validator';
 
 export class ServicesDTO {
     @IsNotEmpty()

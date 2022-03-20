@@ -1,5 +1,5 @@
+import { IsNotEmpty, IsString } from 'class-validator';
 import { UsersRO } from './../users/users.dto';
-import { IsInt, IsString, IsNotEmpty } from 'class-validator';
 
 export class CategoriesDTO {
     @IsString()
@@ -9,7 +9,7 @@ export class CategoriesDTO {
     @IsNotEmpty()
     description: string;
 }
-export interface CategoriesRO {
+export class CategoriesRO {
     id?: string;
     code?: number;
     name?: string;

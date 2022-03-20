@@ -1,9 +1,9 @@
-import { AdminsModule } from './../admins/admins.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
-import { CategoriesService } from './categories.service';
-import { CategoriesResolver } from './categories.resolver';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AdminsModule } from './../admins/admins.module';
 import { CategoriesEntity } from './categories.entity';
+import { CategoriesResolver } from './categories.resolver';
+import { CategoriesService } from './categories.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([CategoriesEntity]), AdminsModule],

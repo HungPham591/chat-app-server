@@ -15,7 +15,7 @@ export class LanguagesService {
     private async isAdmin(adminId: string) {
         this.adminsService.getOne(adminId);
     }
-    async get(): Promise<LanguagesRO[]> {
+    async get(page: number = 1, sizePerPage: number = 10): Promise<LanguagesRO[]> {
         const languages = await this.languagesRepository.find();
         return languages;
     }
