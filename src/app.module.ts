@@ -1,52 +1,51 @@
+import { ApolloDriver } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { GraphQLModule } from '@nestjs/graphql';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { AdminsModule } from './models/admins/admins.module';
-import { CategoriesModule } from './models/categories/categories.module';
-import { FacebookAccountsModule } from './models/facebook-accounts/facebook-accounts.module';
-import { FeedbackTypesModule } from './models/feedback-types/feedback-types.module';
-import { FeedbackModule } from './models/feedbacks/feedbacks.module';
-import { GendersModule } from './models/genders/genders.module';
-import { GoogleAccountsModule } from './models/google-accounts/google-accounts.module';
-import { LanguagesModule } from './models/languages/languages.module';
-import { ReportTypesModule } from './models/report-types/report-types.module';
-import { ReportsModule } from './models/reports/reports.module';
-import { ServicesModule } from './models/services/services.module';
-import { SuperAdminsModule } from './models/super-admins/super-admins.module';
-import { UsersModule } from './models/users/users.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { join } from 'path';
+import { AdminModule } from './models/admin/admin.module';
+import { AuthModule } from './models/auth/auth.module';
+import { CategoryModule } from './models/category/category.module';
+import { FacebookAccountModule } from './models/facebook-account/facebook-account.module';
+import { GoogleAccountModule } from './models/google-account/google-account.module';
+import { PostModule } from './models/post/post.module';
+import { QuestionModule } from './models/question/question.module';
+import { ReportModule } from './models/report/report.module';
+import { SocketGatewayModule } from './models/socket-gateway/socket-gateway.module';
+import { UserModule } from './models/user/user.module';
 import { HttpErrorFilter } from './modules/http-error.module';
 import { LoggingInterceptor } from './modules/logging.module';
+
 
 @Module({
 	imports: [
 		ConfigModule.forRoot({ isGlobal: true }),
-		TypeOrmModule.forRoot(),
+		MongooseModule.forRoot(process.env.MONGODB_URI),
 		GraphQLModule.forRoot({
-			typePaths: ['./**/**/*.graphql'],
+			autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+			driver: ApolloDriver,
+			// context: ({ req }) => ({ headers: req.headers })
 		}),
-		AdminsModule,
-		CategoriesModule,
-		GendersModule,
-		LanguagesModule,
-		ReportTypesModule,
-		ReportsModule,
-		ServicesModule,
-		UsersModule,
-		SuperAdminsModule,
-		FacebookAccountsModule,
-		GoogleAccountsModule,
-		FeedbackModule,
-		FeedbackTypesModule,
+		AuthModule,
+		AdminModule,
+		FacebookAccountModule,
+		GoogleAccountModule,
+		PostModule,
+		ReportModule,
+		UserModule,
+		CategoryModule,
+		QuestionModule,
+		SocketGatewayModule,
 	],
 	providers: [
 		{
-			provide: APP_FILTER,
+			provide: APP_FILTER,//dang ky bat loi va tra ve loi cho client
 			useClass: HttpErrorFilter,
 		},
 		{
-			provide: APP_INTERCEPTOR,
+			provide: APP_INTERCEPTOR,//dang ky log ra loi cho toan bo
 			useClass: LoggingInterceptor,
 		},
 	],

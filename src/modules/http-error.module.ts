@@ -7,7 +7,7 @@ import {
     HttpStatus,
 } from '@nestjs/common';
 
-@Catch()//catch(ten exception) bat cac loi exception
+@Catch()//catch(ten exception) bat cac loi exception roi tra ve loi cho client
 export class HttpErrorFilter implements ExceptionFilter {//dung de bat cac ngoai le xay ra
     catch(exception: HttpException, host: ArgumentsHost) {
         const ctx = host.switchToHttp();

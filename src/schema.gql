@@ -1,0 +1,246 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Admin {
+  created_at: Float
+  _id: ID
+  name: String
+  nick_name: String
+  password: String
+}
+
+type Report {
+  created_at: Float
+  _id: ID
+  user_send: User
+  user_receive: User
+}
+
+type Category {
+  created_at: Float
+  _id: ID
+  name: String
+}
+
+type Question {
+  created_at: Float
+  _id: ID
+  user: User
+  category: Category
+  content: String
+}
+
+type Post {
+  created_at: Float
+  _id: ID
+  user: User
+  content: String
+  question: Question
+}
+
+type User {
+  created_at: Float
+  _id: ID
+  interested_in_gender: Int
+  gender: Int
+  reports_send: [Report!]
+  reports_receive: [Report!]
+  friends: [User!]
+  friend_request_send: [User!]
+  friend_request_receive: [User!]
+  posts: [Post!]
+  questions: [Question!]
+  birthday: Int
+  active: Boolean
+  avatar: String
+  locale: String
+  golds: Int
+  bio: String
+  coordinate: [Float!]
+}
+
+type FacebookAccount {
+  created_at: Float
+  _id: ID
+  facebook_id: String
+  user: User
+}
+
+type GoogleAccount {
+  created_at: Float
+  _id: ID
+  google_id: String
+  user: User
+}
+
+type AdminLoginResponse {
+  admin: Admin!
+  access_token: String!
+  token_type: String!
+  expires_in: Float!
+}
+
+type UserLoginResponse {
+  user: User!
+  access_token: String!
+  token_type: String!
+  expires_in: Float!
+}
+
+type Query {
+  loginGoogleAccount(loginGoogleArgs: LoginGoogleArgs!): UserLoginResponse!
+  loginFacebookAccount(loginFacebookArgs: LoginFacebookArgs!): UserLoginResponse!
+  loginAdmin(loginAdminArgs: LoginAdminArgs!): AdminLoginResponse!
+  removeAccount: User!
+  whoAmI: User!
+  findAllUser(getUserArgs: GetUserArgs!): [User!]!
+  findUserById(id: String!): User!
+  findOneUserWithPostAndQuestion(id: String!): User!
+  findOneUserWithAll(id: String!): User!
+  findAllPost(getPostArgs: GetPostArgs!): [Post!]!
+  findAllPostWithUserAndQuestion(getPostArgs: GetPostArgs!): [Post!]!
+  findPostById(id: String!): Post!
+  findOnePostWithUserAndQuestion(id: String!): Post!
+  findAllReport(getReportArgs: GetReportArgs!): [Report!]!
+  findReportById(id: String!): Report!
+  findOneReportWithUserSendAndUserReceive(id: String!): Report!
+  findAllCategory(getCategoryArgs: GetCategoryArgs!): [Category!]!
+  findCategoryById(id: String!): Category!
+  findAllQuestion(getQuestionArgs: GetQuestionArgs!): [Question!]!
+  findAllQuestionWithUser(getQuestionArgs: GetQuestionArgs!): [Question!]!
+  findQuestionById(id: String!): Question!
+  findOneQuestionWithUser(id: String!): Question!
+}
+
+input LoginGoogleArgs {
+  _id: String
+  token_id: String
+}
+
+input LoginFacebookArgs {
+  _id: String
+  token_id: String
+}
+
+input LoginAdminArgs {
+  name: String
+  password: String
+}
+
+input GetUserArgs {
+  offset: Int = 0
+  limit: Int = 10
+  category: String
+  near_me: Boolean
+}
+
+input GetPostArgs {
+  offset: Int = 0
+  limit: Int = 10
+  category: String
+  near_me: Boolean
+  newest: Boolean
+}
+
+input GetReportArgs {
+  offset: Int = 0
+  limit: Int = 10
+  user_send: String
+}
+
+input GetCategoryArgs {
+  offset: Int = 0
+  limit: Int = 10
+  name: String
+}
+
+input GetQuestionArgs {
+  offset: Int = 0
+  limit: Int = 10
+  category: String
+  near_me: Boolean
+  newest: Boolean
+}
+
+type Mutation {
+  updateFacebookAccount(updateFacebookAccountInput: UpdateFacebookAccountInput!): FacebookAccount!
+  updateGoogleAccount(updateGoogleAccountInput: UpdateGoogleAccountInput!): GoogleAccount!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  sendFriendRequest(idUserReceive: String!): User!
+  friendRequestAccept(idUserReceive: String!): User!
+  removeFriend(idUserReceive: String!): User!
+  softRemoveUser(id: Int!): User!
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
+  removePost(id: String!): Post!
+  createReport(createReportInput: CreateReportInput!): Report!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  softRemoveCategory(id: String!): Category!
+  createQuestion(createQuestionInput: CreateQuestionInput!): Question!
+  updateQuestion(updateQuestionInput: UpdateQuestionInput!): Question!
+  removeQuestion(id: String!): Question!
+}
+
+input UpdateFacebookAccountInput {
+  facebook_id: String
+  user: String
+  _id: ID
+}
+
+input UpdateGoogleAccountInput {
+  google_id: String
+  user: String
+  _id: ID
+}
+
+input UpdateUserInput {
+  interested_in_gender: Int
+  gender: Int
+  birthday: Int
+  avatar: String
+  locale: String
+  bio: String
+  coordinate: [Float!]
+  _id: ID
+}
+
+input CreatePostInput {
+  title: String
+  content: String
+  category: String
+}
+
+input UpdatePostInput {
+  title: String
+  content: String
+  category: String
+  _id: ID!
+}
+
+input CreateReportInput {
+  user_receive: String
+}
+
+input CreateCategoryInput {
+  name: String
+}
+
+input UpdateCategoryInput {
+  name: String
+  _id: ID
+}
+
+input CreateQuestionInput {
+  title: String
+  content: String
+  category: String
+}
+
+input UpdateQuestionInput {
+  title: String
+  content: String
+  category: String
+  _id: ID
+}

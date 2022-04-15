@@ -9,8 +9,8 @@ import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 
 @Injectable()
-export class ValidationPipe implements PipeTransform {
-    async transform(value: any, metadata: ArgumentMetadata) {
+export class ValidationPipe implements PipeTransform {//dung de bat loi du lieu va chuyen doi thanh dung kieu du lieu
+    async transform(value: any, metadata: ArgumentMetadata) {// dung de chuyen doi kieu du lieu
         if (value instanceof Object && this.isEmpty(value)) {
             throw new HttpException(
                 'Validation failed: No body submitted',
