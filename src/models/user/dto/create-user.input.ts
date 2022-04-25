@@ -5,6 +5,11 @@ import { Gender } from './../../../utils/Interface';
 
 @InputType()
 export class CreateUserInput {
+	@Field(type => String, { nullable: true })
+	@IsString()
+	@IsNotEmpty()
+	name?: string
+
 	@Field(type => Int, { nullable: true })
 	@IsEnum(Gender)
 	interested_in_gender?: Gender;

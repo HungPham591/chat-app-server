@@ -16,6 +16,10 @@ export class User extends BaseEntity {
 	@Field(type => ID, { nullable: true })
 	_id: string;
 
+	@Field(type => String, { nullable: true })
+	@Prop({ required: true, type: String })
+	name?: string;
+
 	@Field(type => Int, { nullable: true })
 	@Prop({ required: true, type: Number, enum: Gender })
 	interested_in_gender?: Gender;
@@ -43,6 +47,10 @@ export class User extends BaseEntity {
 	@Field(type => [User], { nullable: true })
 	@Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], required: true })
 	friend_request_receive?: string[];
+
+	@Field(type => [User], { nullable: true })
+	@Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], required: true })
+	user_seen?: string[];
 
 	@Field(type => [Post], { nullable: true })
 	@Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }] })
@@ -78,6 +86,6 @@ export class User extends BaseEntity {
 
 	@Field(type => [Float], { nullable: true })
 	@Prop({ required: true, type: [Number] })
-	coordinate?: number[]
+	coordinate?: number[];
 }
 export const UserSchema = SchemaFactory.createForClass(User);

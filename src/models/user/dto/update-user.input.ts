@@ -9,6 +9,11 @@ export class UpdateUserInput extends PartialType(CreateUserInput) {
   @IsMongoId()
   _id?: string;
 
+  @Field(type => String, { nullable: true })
+  @IsString()
+  @IsNotEmpty()
+  name?: string;
+
   @Field(type => Int, { nullable: true })
   @IsEnum(Gender)
   interested_in_gender?: Gender;
