@@ -1,18 +1,16 @@
-import { UserToken } from './../auth/entities/user-token.entity';
-import { BaseResolver } from './../base/base.resolver';
-import { GetReportArgs } from './dto/get-report.args';
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { ReportService } from './report.service';
-import { Report } from './entities/report.entity';
-import { CreateReportInput } from './dto/create-report.input';
-import { UpdateReportInput } from './dto/update-report.input';
-import { Constants } from 'src/constants/Constants';
-import { Roles } from '../auth/decorators/roles.decorator';
-import { Role } from 'src/utils/Interface';
 import { UseGuards } from '@nestjs/common';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Role } from 'src/utils/Interface';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { Roles } from '../auth/decorators/roles.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
-import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { UserToken } from './../auth/entities/user-token.entity';
+import { BaseResolver } from './../base/base.resolver';
+import { CreateReportInput } from './dto/create-report.input';
+import { GetReportArgs } from './dto/get-report.args';
+import { Report } from './entities/report.entity';
+import { ReportService } from './report.service';
 
 @Resolver(() => Report)
 export class ReportResolver extends BaseResolver {

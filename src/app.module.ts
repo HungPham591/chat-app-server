@@ -17,6 +17,9 @@ import { SocketGatewayModule } from './models/socket-gateway/socket-gateway.modu
 import { UserModule } from './models/user/user.module';
 import { HttpErrorFilter } from './modules/http-error.module';
 import { LoggingInterceptor } from './modules/logging.module';
+import { AchievementModule } from './models/achievement/achievement.module';
+import { ReportTypeModule } from './models/report-type/report-type.module';
+import { ItemModule } from './models/item/item.module';
 
 
 @Module({
@@ -38,6 +41,9 @@ import { LoggingInterceptor } from './modules/logging.module';
 		CategoryModule,
 		QuestionModule,
 		SocketGatewayModule,
+		AchievementModule,
+		ReportTypeModule,
+		ItemModule,
 	],
 	providers: [
 		{
